@@ -8,7 +8,7 @@ package NNspring.entities;
  * To change this template use File | Settings | File Templates.
  */
 public class Nurse extends Person {
-
+              //test comment
     public Nurse() {
     }
 
