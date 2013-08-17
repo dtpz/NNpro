@@ -1,9 +1,13 @@
 var express = require('express');
 var app = express();
 
+// to debug: http://localhost:55281/
+//var nodeCodein = require("node-codein");
 
 app.configure(function(){
-	app.use(express.logger());
+	app.use(express.logger({ format: '\x1b[1m:method\x1b[0m \x1b[33m:url\x1b[0m :response-time ms' }));
+	app.use(express.bodyParser());
+	app.use(express.cookieParser());
 	app.set('view engine','jade');
 	app.set('views', __dirname+'/views');
 	app.use('/lib',express.static(__dirname + '/lib'));
