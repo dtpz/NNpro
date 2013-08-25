@@ -1,2 +1,8 @@
 /target
 /bin
+/.idea
+/expressNN/node_modules
+/.settings
+/NNClient_java
+*.iml
+*.project
