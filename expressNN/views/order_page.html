@@ -84,8 +84,61 @@
 <br>
 <br>
 <!-- Note: this should be switched with a button which disables the table, and switched to a confirm/cancel button -->
-<form action="/order_page">
+<!--<form action="/order_page">
     <input type="submit" value="Review Order">
-</form>
+</form>-->
+
+<script>
+  $(document).ready(function(){
+    $('#ConfirmButton').click(function(){
+    	var elems = document.getElementsByTagName('input');
+    	var len = elems.length;
+    	for (var i = 0; i < len; i++) {
+    		if (elems[i].id=="CancelButton")
+    			elems[i].disabled = false;
+    		else
+    	    	elems[i].disabled = true;
+    	}    	
+        var selects = document.getElementsByTagName("select");
+        for (var i = 0; i < selects.length; i++) {
+        	selects[i].disabled = true;
+        }
+        var buttons = document.getElementsByTagName("button");
+        for (var i = 0; i < buttons.length; i++) {
+        	buttons[i].disabled = true;
+        }
+        var spans = document.getElementsByTagName("span");
+        for (var i = 0; i < spans.length; i++) {
+        	spans[i].disabled = true;
+        }
+    });
+  });
+</script>
+
+<input type="button" value="Confirm" id="ConfirmButton" >
+
+<!--  ASK Etai how to merge into one function -->
+<script>
+  $(document).ready(function(){
+    $('#CancelButton').click(function(){
+    	var elems = document.getElementsByTagName('input');
+    	var len = elems.length;
+    	for (var i = 0; i < len; i++) {
+    	    elems[i].disabled = false;
+    	}    	
+        var selects = document.getElementsByTagName("select");
+        for (var i = 0; i < selects.length; i++) {
+        	selects[i].disabled = false;
+        }
+        var buttons = document.getElementsByTagName("button");
+        for (var i = 0; i < buttons.length; i++) {
+        	buttons[i].disabled = false;
+        }
+    });
+  });
+</script>
+
+<input type="button" value="Cancel" id="CancelButton" >
+
 </body>
 </html>
