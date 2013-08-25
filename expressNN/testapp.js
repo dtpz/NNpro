@@ -5,7 +5,7 @@ var app = express();
 //var nodeCodein = require("node-codein");
 
 app.configure(function(){
-	app.use(express.logger({ format: '\x1b[1m:method\x1b[0m \x1b[33m:url\x1b[0m :response-time ms' }));
+	app.use(express.logger({ format: '\x1b[1m:method \x1b[32m:status \x1b[0m \x1b[33m:url\x1b[0m :response-time ms' }));
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
 	app.set('view engine','jade');
@@ -95,7 +95,16 @@ app.get('/recordslist', function(req, res){
 		'Access-Control-Allow-Origin': '*',
 		'Content-Type': 'application/json'	
 	});
-	res.send("{\r\n \"Result\":\"OK\",\r\n \"Records\":[\r\n  {\"PersonId\":1,\"Name\":\"Benjamin Button\",\"Age\":17,\"RecordDate\":\"\\/Date(1320259705710)\\/\"},\r\n  {\"PersonId\":2,\"Name\":\"Douglas Adams\",\"Age\":42,\"RecordDate\":\"\\/Date(1320259705710)\\/\"},\r\n  {\"PersonId\":3,\"Name\":\"Isaac Asimov\",\"Age\":26,\"RecordDate\":\"\\/Date(1320259705710)\\/\"},\r\n  {\"PersonId\":4,\"Name\":\"Thomas More\",\"Age\":65,\"RecordDate\":\"\\/Date(1320259705710)\\/\"}\r\n ]\r\n}");
+	var result = {
+		Result: "OK",
+		Records: [
+			{ PersonId: 1, Name: "BENNY NEWNAME", Age: 17, RecordDate: 1320259705710},
+			{ PersonId: 2, Name: "Douglas Adams", Age: 42, RecordDate: 1320259705710}, //the date is in milliseconds here
+			{ PersonId: 3, Name: "Isaac Asimov", Age: 26, RecordDate: 1320259705710},
+			{ PersonId: 3, Name: "Thomas More", Age: 65, RecordDate: 1320259705710}
+		]
+	}
+	res.send(result);
 });
 
 app.post('/recordslist', function(req, res){
@@ -104,7 +113,16 @@ app.post('/recordslist', function(req, res){
 		'Access-Control-Allow-Origin': '*',
 		'Content-Type': 'application/json'	
 	});
-	res.send("{\r\n \"Result\":\"OK\",\r\n \"Records\":[\r\n  {\"PersonId\":1,\"Name\":\"Benjamin Button\",\"Age\":17,\"RecordDate\":\"\\/Date(1320259705710)\\/\"},\r\n  {\"PersonId\":2,\"Name\":\"Douglas Adams\",\"Age\":42,\"RecordDate\":\"\\/Date(1320259705710)\\/\"},\r\n  {\"PersonId\":3,\"Name\":\"Isaac Asimov\",\"Age\":26,\"RecordDate\":\"\\/Date(1320259705710)\\/\"},\r\n  {\"PersonId\":4,\"Name\":\"Thomas More\",\"Age\":65,\"RecordDate\":\"\\/Date(1320259705710)\\/\"}\r\n ]\r\n}");
+	var result = {
+		Result: "OK",
+		Records: [
+			{ PersonId: 1, Name: "BENNY NEWNAME", Age: 17, RecordDate: "Date(1320259705710)"},
+			{ PersonId: 2, Name: "Douglas Adams", Age: 42, RecordDate: "Date(1320259705710)"},
+			{ PersonId: 3, Name: "Isaac Asimov", Age: 26, RecordDate: "Date(1320259705710)"},
+			{ PersonId: 3, Name: "Thomas More", Age: 65, RecordDate: "Date(1320259705710)"}
+		]
+	}
+	res.send(result);
 });
 
 app.get('/', function(req, res){
