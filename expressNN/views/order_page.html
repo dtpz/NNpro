@@ -87,8 +87,44 @@
 <!--<form action="/order_page">
     <input type="submit" value="Review Order">
 </form>-->
-
+<input type="button" value="Review Order" id="ReviewButton" > <!-- onclick="DisplayButtons()">
 <script>
+	function DisplayButtons()
+	{
+		document.getElementById("ConfirmButton").style.visibility="visible";
+		document.getElementById("CancelButton").style.visibility="visible";
+	}
+</script> -->
+ <script>
+	 $(function() {
+	   $( "#dialog-confirm" ).dialog({
+	     resizable: true,
+	     height:200.98,
+	     modal: true,
+	     autoOpen: false,
+	     buttons: {
+	       "Confirm": function() {
+	         $( this ).dialog( "close" );
+	         window.location = "confirmation?";
+	       },
+	       Cancel: function() {
+	         $( this ).dialog( "close" );
+	       }
+	     }
+	   });
+	 });
+   $( "#ReviewButton" )
+      .button()
+      .click(function() {
+        $( "#dialog-confirm" ).dialog( "open" );
+      });
+ </script>
+ 
+<div id="dialog-confirm" title="Warnning!">
+  <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Are you sure you want to confirm your order?</p>
+</div>
+
+<!-- <script>
   $(document).ready(function(){
     $('#ConfirmButton').click(function(){
     	var elems = document.getElementsByTagName('input');
@@ -106,18 +142,14 @@
         var buttons = document.getElementsByTagName("button");
         for (var i = 0; i < buttons.length; i++) {
         	buttons[i].disabled = true;
-        }
-        var spans = document.getElementsByTagName("span");
-        for (var i = 0; i < spans.length; i++) {
-        	spans[i].disabled = true;
-        }
+        }      
     });
   });
-</script>
-
-<input type="button" value="Confirm" id="ConfirmButton" >
-
-<!--  ASK Etai how to merge into one function -->
+</script> -->
+<!--var addRecord=document.getElementById("jtable-toolbar-item jtable-toolbar-item-add-record");
+addRecord.disabled = true;-->  
+<!-- 
+<input type="button" value="Confirm" id="ConfirmButton" style="visibility:hidden">
 <script>
   $(document).ready(function(){
     $('#CancelButton').click(function(){
@@ -138,7 +170,7 @@
   });
 </script>
 
-<input type="button" value="Cancel" id="CancelButton" >
-
+<input type="button" value="Cancel" id="CancelButton" style="visibility:hidden">
+ -->
 </body>
 </html>
