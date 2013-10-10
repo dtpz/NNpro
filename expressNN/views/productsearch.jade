@@ -1,0 +1,72 @@
+//
+   Created by Etai on 10/8/13.
+html
+    head
+        title Search for a product
+        script(src='jqueryUI/js/jquery-1.9.1.js')
+        script(src='jqueryUI/js/jquery-ui-1.10.3.custom.js')
+        script(src='http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.2.1/lodash.js')
+        script(src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.js')
+        link(rel='stylesheet', href='../lib/login/css/base.css')
+        link(rel='stylesheet', href='../jqueryUI/css/smoothness/jquery-ui-1.10.3.custom.css')
+        link(rel='stylesheet', href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables_themeroller.css')
+        link(rel='stylesheet', href='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css')
+        style.
+            .ui-autocomplete{
+                background-color:#fff;
+                max-height: 300px;
+                max-width: 300px;
+                overflow-y: auto;
+                /* prevent horizontal scrollbar */
+                overflow-x: hidden;
+            }
+            .ui-autocomplete-category {
+                font-weight: bold;
+                padding: .2em .4em;
+                margin: .8em 0 .2em;
+                line-height: 1.5;
+            }
+            .ui-helper-hidden-accessible { display:none; }
+            #wrapper {
+                width: 1200px;
+
+            }
+            .container{
+                margin-top: 50px !important;
+                margin-bottom: 50px !important;
+            }
+            .center{
+                margin: 0 auto;
+            }
+    body
+        #wrapper.center
+            #content.container.center
+                table#productInfo(cellspacing=0,cellpadding=0,width='100%').display
+
+
+    script(type='text/javascript').
+        $(document).ready(function () {
+
+            var productsList;
+            $.get('api/productslist',function(data){
+                productsList = data;
+
+                $('#productInfo').dataTable({
+                    bJQueryUI: true,
+                    aaData: productsList,
+                    aoColumns: [
+                    {sTitle: "ID"},
+                    {sTitle: "Product Name"},
+                    {sTitle: "Category"},
+                    {sTitle: "Department"},
+                    {sTitle: "subDepartment"},
+                    {sTitle: "type"},
+                    {sTitle: "medicaide"},
+                    {sTitle: "medicare"},
+                    {sTitle: "medicarePD"},
+                    {sTitle: "managedCare"}
+                    ]
+                });
+            });
+
+        });
